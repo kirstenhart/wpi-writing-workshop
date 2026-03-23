@@ -1,0 +1,39 @@
+@startuml user_transaction.puml
+title User Transaction Sequence Diagram
+
+actor User
+participant "dashboard.py" as Dashboard
+participant "auth.py" as Auth
+participant "users.json" as Data
+
+User -> Dashboard: Click "Transfer Funds"\nSelect transaction type\nEnter amount
+Dashboard -> Dashboard: Parse input as float
+Dashboard -> Dashboard: Validate amount > 0
+
+Dashboard -> Dashboard: _perform_transaction()
+Dashboard -> Auth: load_data()
+Auth -> Data: Read users.json
+Data --> Auth: user_data (dict)
+Auth --> Dashboard: user_data
+
+alt Withdraw selected
+    Dashboard -> Dashboard: Check balance >= amount
+    alt Sufficient balance
+        Dashboard -> Dashboard: Subtract amount from balance
+        Dashboard -> Dashboard: Generate timestamped\nwithdraw history entry
+        Dashboard -> Auth: save_data(user_data)
+        Auth -> Data: Write updated users.json
+        Dashboard -> Dashboard: Update balance_var label
+    else Insufficient balance
+        Dashboard -> User: Display error message
+    end
+
+else Deposit selected
+    Dashboard -> Dashboard: Add amount to balance
+    Dashboard -> Dashboard: Generate timestamped\ndeposit history entry
+    Dashboard -> Auth: save_data(user_data)
+    Auth -> Data: Write updated users.json
+    Dashboard -> Dashboard: Update balance_var label
+end
+
+@enduml

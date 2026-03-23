@@ -1,0 +1,45 @@
+@startuml dash_transact.puml
+title Dashboard Transaction Flowchart
+start
+
+:User authenticated;
+:Enter persistent dashboard session;
+
+:Retrieve user data\n(balance, history);
+
+:User opens Transfer Funds dialog;
+:User enters transaction amount;
+
+:Parse input as float;
+if (Valid number?) then (Yes)
+    if (Amount > 0?) then (Yes)
+
+        if (Transaction type?) then (Withdraw)
+            :Check balance >= amount;
+            if (Sufficient funds?) then (Yes)
+                :Update balance in memory;
+            else (No)
+                :Display insufficient funds error;
+                stop
+            endif
+
+        else (Deposit)
+            :Update balance in memory;
+        endif
+
+        :Create transaction history entry\n(type, amount, timestamp);
+        :Call auth.save_data;
+        :Overwrite users.json;
+
+        :Update balance_var label;
+        :Display updated balance;
+
+    else (No)
+        :Display invalid amount error;
+    endif
+else (No)
+    :Display input format error;
+endif
+
+stop
+@enduml

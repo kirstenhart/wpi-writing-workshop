@@ -1,0 +1,27 @@
+@startuml authenticate_user.puml
+title User Authentication Sequence Diagram
+
+actor User
+participant "main.py" as Main
+participant "auth.py" as Auth
+participant "users.json" as Data
+participant "dashboard.py" as Dashboard
+
+User -> Main: Enter credentials\nClick "Login"
+Main -> Auth: authenticate_user(u, p)
+
+Auth -> Auth: hash_password(p)\n(SHA-256)
+Auth -> Data: load_data()
+Data --> Auth: user_data (dict)
+
+alt Username exists and hashes match
+    Auth --> Main: True, user_data
+    Main -> Main: Clear login fields
+    Main -> Dashboard: Initialize BankDashboard(user_data)
+else Authentication fails
+    Auth --> Main: False
+    Main -> User: Display error message
+end
+
+@enduml
+

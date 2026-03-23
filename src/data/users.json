@@ -1,0 +1,28 @@
+{
+    "kirsten": {
+        "password": "089542505d659cecbb988bb5ccff5bccf85be2dfa8c221359079aee2531298bb",
+        "balance": 1000.0,
+        "history": []
+    },
+    "newUser": {
+        "password": "5c29a959abce4eda5f0e7a4e7ea53dce4fa0f0abbe8eaa63717e2fed5f193d31",
+        "balance": 1065.75,
+        "history": [
+            {
+                "type": "Withdraw",
+                "amount": 5.0,
+                "date": "2026-02-01 12:45"
+            },
+            {
+                "type": "Deposit",
+                "amount": 505.75,
+                "date": "2026-02-01 12:45"
+            },
+            {
+                "type": "Withdraw",
+                "amount": 435.0,
+                "date": "2026-02-01 13:26"
+            }
+        ]
+    }
+}

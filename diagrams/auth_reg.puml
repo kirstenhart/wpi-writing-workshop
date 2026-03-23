@@ -1,0 +1,36 @@
+@startuml auth_reg.puml
+title User Authentication and Registration Flowchart
+start
+
+:Application launched;
+:User enters username\nand password;
+
+if (User selects action?) then (Register)
+    :Call auth.register_user;
+    :Load users.json;
+
+    if (Username unique?) then (Yes)
+        :Hash password\n(SHA-256);
+        :Create user record;
+        :Set default balance = $1000;
+        :Save to users.json;
+        :Display registration success;
+    else (No)
+        :Display username exists error;
+    endif
+
+else (Login)
+    :Call auth.authenticate_user;
+    :Hash input password\n(SHA-256);
+    :Load users.json;
+
+    if (Password hash matches?) then (Yes)
+        :Clear login inputs;
+        :Initialize BankDashboard;
+    else (No)
+        :Display authentication error;
+    endif
+endif
+
+stop
+@enduml
