@@ -70,13 +70,13 @@ Once authenticated, the user moves into the persistent session managed by `dashb
 
 ## 4. User Interface Design
 **SecureBank Pro App** (built in `main.py`)
-![SecureBank Pro App (main.py)](images/securebank-login.png)
+![SecureBank Pro App (main.py)](images/securebank-login.png) <br>
 **SecureBank Dashboard** (built in `dashboard.py`)
-![SecureBank Dashboard (dashboard.py)](images/securebank-dashboard.png)
+![SecureBank Dashboard (dashboard.py)](images/securebank-dashboard.png) <br>
 **Transfer Funds** (built in `dashboard.py`)
-![Transfer Funds (dashboard.py)](images/transfer-funds.png)
+![Transfer Funds (dashboard.py)](images/transfer-funds.png) <br>
 **Transaction History** (built in `dashboard.py`)
-![Transaction History (dashboard.py)](images/transaction-history.png)
+![Transaction History (dashboard.py)](images/transaction-history.png) <br>
 
 ## 5. Future Considerations
 To evolve SecureBank Pro into a production-ready simulation, the following features are will be considered in the next version:
@@ -89,7 +89,7 @@ To evolve SecureBank Pro into a production-ready simulation, the following featu
 ## 6. File Structure
 Implemented in Python, this app requires the import of Tkinter for building the graphical user interface.
 
-In the `/dev/kirstenh/workshop/src/` directory:
+In the `wpi-writing-workshop/src/` directory:
 - `main.py` requires import of `tkinter`, `auth` (from `auth.py`), and `dashboard` (from `dashboard.py`).
 - `auth.py` requires import of `json`, `os`, and `hashlib`.
 - `dashboard.py` requires import of `tkinter` and `auth`.
